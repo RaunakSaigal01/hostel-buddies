@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Isometric City Animation Background</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    #lottie-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    .main-content {
+      position: relative;
+      z-index: 2;
+      color: #22223b;
+      padding: 60px;
+      font-size: 4vw;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      text-align: left;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
+</head>
+<body>
+  <div id="lottie-bg"></div>
+  <div class="main-content">
+    Grow your wealth
+  </div>
+  <script>
+    
+    var animationData =
+    lottie.loadAnimation({
+      container: document.getElementById('lottie-bg'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: animationData
+    });
+  </script>
+</body>
+</html>

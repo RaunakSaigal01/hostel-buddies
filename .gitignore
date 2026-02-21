@@ -1,0 +1,21 @@
+# Ignore environment files everywhere
+.env
+.env.local
+.env.*.local
+
+# Ignore envs inside backend and frontend explicitly
+backend/.env
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# Node modules
+node_modules
+frontend/node_modules
+backend/node_modules
+
+# Build outputs
+frontend/build
+backend/dist
+
+backend/hostelbuddy-e1aad-firebase-adminsdk-fbsvc-ae5f5d479d
