@@ -21,18 +21,23 @@ const pool = mysql.createPool({
 
 app.post("/users", async (req, res) => {
   const { uid, name, email } = req.body;
+
   if (!uid || !name || !email) {
     return res.status(400).json({ error: "Missing uid, name, or email" });
   }
 
   try {
-    const sql = "INSERT INTO users (uid, name, email) VALUES (?, ?, ?)";
-    const [result] = await pool.query(sql, [uid, name, email]);
+    const sql = `
+      INSERT INTO users (uid, name, email)
+      VALUES (?, ?, ?)
+      ON DUPLICATE KEY UPDATE
+      name = VALUES(name),
+      email = VALUES(email)
+    `;
 
-    res.json({
-      success: true,
-      message: result.affectedRows > 0 ? "✅ New user added" : "ℹ️ User already exists",
-    });
+    await pool.query(sql, [uid, name, email]);
+
+    res.json({ success: true, message: "User saved/updated successfully" });
   } catch (err) {
     console.error("❌ DB Error:", err);
     res.status(500).json({ error: "Failed to save user" });
