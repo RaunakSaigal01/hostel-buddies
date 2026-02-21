@@ -5,7 +5,7 @@ export default function useImages() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/images") // adjust backend port
+    fetch("https://hostel-buddies.onrender.com/images") // adjust backend port
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.error("Error fetching images:", err));
