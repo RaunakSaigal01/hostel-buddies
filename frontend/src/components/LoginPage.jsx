@@ -52,6 +52,7 @@ if (!response.ok) {
 }
 
 console.log("✅ User saved in backend");
+  }
   return (
 
     <center className="login">
