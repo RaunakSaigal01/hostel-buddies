@@ -34,26 +34,24 @@ export default function LoginPage({ onLogin }) {
     const token = await user.getIdToken();
 
     
-    await fetch("https://hostel-buddies.onrender.com/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: user.displayName,
-        email: user.email,
-        uid: user.uid,
-        photo: user.photoURL,
-        token: token,
-      }),
-    });
+    const response = await fetch("https://hostel-buddies.onrender.com/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: user.displayName,
+    email: user.email,
+    uid: user.uid,
+  }),
+});
 
-    console.log("✅ User saved in backend");
-    onLogin(user);
-  } catch (error) {
-    console.error("❌ Google login error:", error);
-  }
-};
+if (!response.ok) {
+  const err = await response.json();
+  throw new Error(err.error || "Failed to save user");
+}
+
+console.log("✅ User saved in backend");
   return (
 
     <center className="login">
