@@ -21,7 +21,7 @@ export default function Hero({ selectedBlock, onBack }) {
 
   const fetchAvailability = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/check-availability", {
+      const res = await fetch("https://hostel-buddies-ai.onrender.com/check-availability", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ year, gpa, block }),
